@@ -1,0 +1,7 @@
+All the example is build with lua5.2, there are some different form the
+previou version
+
+To compile and run all the source code, you must install the liblua5.2-dev
+package, in Ubuntu, just:
+$ sudo apt-get install liblua5.2-dev
+
