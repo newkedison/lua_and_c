@@ -10,6 +10,8 @@ OBJECT=
 EXTRA_LIB=
 AR=
 
+SRC_PATH=luasrc
+
 win:
 	$(MAKE) "CC=i586-mingw32msvc-gcc" "RANLIB=i586-mingw32msvc-ranlib" \
 		"OBJECT=lua.exe" "EXTRA_LIB=" "AR=ar rcs -o" "SYSCFLAGS=" \
@@ -21,7 +23,7 @@ linux:
 		"SYSLIBS=-Wl,-E -ldl -lreadline -lncurses" lua
 
 $(OBJECT): main.cpp lib
-	$(CC) -o $@ main.cpp -Lluasrc -llua $(EXTRA_LIB)
+	$(CC) -o $@ main.cpp -L$(SRC_PATH) -llua $(EXTRA_LIB)
 
 # lua: main.cpp lib
 #   $(CC) -o lua main.cpp -Lliblua -llua -lm -ldl
@@ -32,15 +34,15 @@ $(OBJECT): main.cpp lib
 lib:
 	@echo "CC=$(CC)"
 	@echo "AR=$(AR)"
-	cd luasrc && $(MAKE) "CC=$(CC)" "LUA_A=liblua.a" "AR=$(AR)" \
+	cd $(SRC_PATH) && $(MAKE) "CC=$(CC)" "LUA_A=liblua.a" "AR=$(AR)" \
 		"RANLIB=$(RANLIB)" "SYSCFLAGS=$(SYSCFLAGS)" "SYSLIBS=$(SYSLIBS)" \
 		liblua.a
 
 clean:
-	cd luasrc && $(MAKE) clean
+	cd $(SRC_PATH) && $(MAKE) clean
 
 cleanall: clean
-	rm lua.exe lua
+	-rm lua.exe lua
 
 run: lua
 	./lua

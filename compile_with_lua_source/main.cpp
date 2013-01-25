@@ -16,9 +16,9 @@
 #include <string.h>
 extern "C"
 {
-#include "liblua/lua.h"
-#include "liblua/lauxlib.h"
-#include "liblua/lualib.h"
+#include "luasrc/lua.h"
+#include "luasrc/lauxlib.h"
+#include "luasrc/lualib.h"
 }
 
 int main(int argc, const char* argv[])
