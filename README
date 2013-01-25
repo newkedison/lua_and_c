@@ -1,4 +1,4 @@
-All the example is build with lua5.2, there are some different form the
+All the example is build with lua5.2, there are some different from the
 previou version
 
 To compile and run all the source code, you must install the liblua5.2-dev
